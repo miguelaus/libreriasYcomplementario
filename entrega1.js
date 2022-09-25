@@ -239,7 +239,7 @@ function mostrarMenuPizzas(array) {
 		                      				<h5 class="card-title">${pizza.version}</h5>
 		                      					<p class="card-text">Precio: ${pizza.precio} </p>
 		                      					<p class="card-text">Tamaño de producto: ${pizza.size}</p>
-		                      				<button id="agregarBtn${pizza.id}" class="btn btn-primary ">Comprar </button>
+		                      				<button id="agregarBtn${pizza.id}" class="btn btn-primary ">Agregar al Carrito </button>
 		                    			</div>
 	                			</div>`
 	        divPizzas.append(nuevaPizza)
@@ -298,7 +298,7 @@ function mostrarMenuPasta(array)  {
 		                      				<h5 class="card-title">${pasta.version}</h5>
 		                      					<p class="card-text">Precio: ${pasta.precio}</p>
 		                      					<p class="card-text">Tamaño de producto: ${pasta.size}</p>
-		                      				<button id="agregarBtn${pasta.id}" class="btn btn-primary">Comprar</button>
+		                      				<button id="agregarBtn${pasta.id}" class="btn btn-primary">Agregar al Carrito</button>
 		                    			</div>
 	                			</div>`
 	   		 divPasta.append(nuevaPasta)
@@ -342,7 +342,7 @@ function mostrarMenuEnsalada () {
 		                      				<h5 class="card-title">${ensalada.version}</h5>
 		                      					<p class="card-text">Precio: ${ensalada.precio}</p>
 		                      					<p class="card-text">Tamaño de producto: ${ensalada.size}</p>
-		                      				<button id="agregarBtn${ensalada.id}" class="btn btn-primary">Comprar</button>
+		                      				<button id="agregarBtn${ensalada.id}" class="btn btn-primary">Agregar al Carrito</button>
 		                    			</div>
 	                			</div>`
 	   		 divEnsalada.append(nuevaEnsalada)
@@ -385,7 +385,7 @@ function mostrarMenuCarne () {
 		                      				<h5 class="card-title">${carne.version}</h5>
 		                      					<p class="card-text">Precio: ${carne.precio}</p>
 		                      					<p class="card-text">Tamaño de producto: ${carne.size}</p>
-		                      				<button id="agregarBtn${carne.id}" class="btn btn-primary">Comprar</button>
+		                      				<button id="agregarBtn${carne.id}" class="btn btn-primary">Agregar al Carrito</button>
 		                    			</div>
 	                			</div>`
 	   		 divCarne.append(nuevaCarne)
@@ -424,7 +424,7 @@ function mostrarMenuTragos() {
 		                      				<h5 class="card-title">${tragos.version}</h5>
 		                      					<p class="card-text">Precio: ${tragos.precio}</p>
 		                      					<p class="card-text">Tamaño de producto: ${tragos.size}</p>
-		                      				<button id="agregarBtn${tragos.id}" class="btn btn-primary">Comprar</button>
+		                      				<button id="agregarBtn${tragos.id}" class="btn btn-primary">Agregar al Carrito</button>
 		                    			</div>
 	                			</div>`
 	   		 divTragos.append(nuevaTragos)
@@ -467,7 +467,7 @@ function mostrarMenuPostres() {
 			                      				<h5 class="card-title">${postre.version}</h5>
 			                      					<p class="card-text">Precio: ${postre.precio}</p>
 			                      					<p class="card-text">Tamaño de producto: ${postre.size}</p>
-		                      					<button id="agregarBtn${postre.id}" class="btn btn-primary">Comprar</button>
+		                      					<button id="agregarBtn${postre.id}" class="btn btn-primary">Agregar al Carrito</button>
 			                    			</div>
 		                			</div>`
 		   		 divPostres.append(nuevaPostre)
@@ -505,7 +505,7 @@ function mostrarMenuCafe() {
 			                      				<h5 class="card-title">${cafe.version}</h5>
 			                      					<p class="card-text">Precio: ${cafe.precio}</p>
 			                      					<p class="card-text">Tamaño de producto: ${cafe.size}</p>
-		                      					<button id="agregarBtn${cafe.id}" class="btn btn-primary">Comprar</button>
+		                      					<button id="agregarBtn${cafe.id}" class="btn btn-primary">Agregar al Carrito</button>
 			                    			</div>
 		                			</div>`
 		   		 divCafe.append(nuevaCafe)
@@ -755,6 +755,10 @@ function buscarPorPlato() {
 	let buscarPlato = document.getElementById("buscarPlato")
 
 	switch (buscarPlato.value.toLowerCase()) {
+
+	case "pizza":
+	mostrarMenuPizzas();
+	break;	
 
 	case "margarita":
 	mostrarMenuPizzas();
