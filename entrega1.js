@@ -537,6 +537,7 @@ function agregarAlCarritoCafe (cafe) {
 
 
 
+
 // Carrito y Botones del Carrito
 
 
@@ -596,7 +597,6 @@ botonFinalizarCompra.addEventListener ("click", () => {
 
 
 
-//boton eliminar producto prueba
 
 
 
@@ -619,7 +619,7 @@ function cargarProductosCarrito(array){
 	                    <h4 class="card-title">${productoCarrito.version}</h4>
 	                    <p class="card-text"> ${productoCarrito.size}</p>
 	                    <p class="card-text">$${productoCarrito.precio}</p> 
-	                    <button class= "btn btn-danger" id="${productoCarrito.id}r"><i class="fas fa-trash-alt"></i></button>
+	                    <button onclick="eliminarDelCarrito(${productoCarrito.id })" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
 	            </div>    
 	        
 	        
@@ -658,6 +658,15 @@ function cargarProductosCarrito(array){
 }
 
 
+
+//boton eliminar producto prueba
+
+const eliminarDelCarrito = (productoCarrito) => {
+	const item = productosEnCarrito.find((elem) => productoCarrito.id === productoCarrito)
+	const indice = productosEnCarrito.indexOf(item)
+	productosEnCarrito.splice(indice, 1)
+	cargarProductosCarrito();
+}
 
 
 
