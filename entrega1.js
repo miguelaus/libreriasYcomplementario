@@ -548,8 +548,12 @@ let botonFinalizarCompra = document.getElementById("botonFinalizarCompra")
 let parrafoCompra = document.getElementById('precioTotal')
 
 botonCarrito.addEventListener("click", ()=>{
-    cargarProductosCarrito(productosEnCarrito)
+    cargarProductosCarrito(productosEnCarrito);
+
 })
+
+
+
 
 
 
@@ -659,16 +663,19 @@ function cargarProductosCarrito(array){
 
 
 
-//boton eliminar producto prueba
+//boton eliminar producto 
 
-const eliminarDelCarrito = (productoCarrito) => {
-	const item = productosEnCarrito.find((elem) => productoCarrito.id === productoCarrito)
-	const indice = productosEnCarrito.indexOf(item)
-	productosEnCarrito.splice(indice, 1)
-	cargarProductosCarrito();
+const eliminarDelCarrito =(productoCarrito)=>{
+
+const item = productosEnCarrito.find((elem)=> elem.id === productoCarrito)
+
+
+
+    productosEnCarrito.splice(item,1)
+
+cargarProductosCarrito(productosEnCarrito);
+
 }
-
-
 
 
 
