@@ -572,8 +572,10 @@ botonFinalizarCompra.addEventListener ("click", () => {
 		  title: 'Estas a punto de finalizar tu compra',
 		  text: "Revisa todos los productos que se encuentren en el carrito antes de confirmar",
 		  icon: 'warning',
+		  iconColor: "#22F13A",
 		  showCancelButton: true,
-		  background: '#FFFFFF',
+		  color: "#FFFFFF",
+		  background: '#000000',
   		  backdrop: `rgba(0,0,#93FCBD,0.4) left top no-repeat`,
 		  confirmButtonColor: '#3085d6',
 		  cancelButtonColor: '#d33',
@@ -637,6 +639,8 @@ function cargarProductosCarrito(array){
 					  icon: 'error',
 					  title: 'Upa...',
 					  text: 'Aún no hay productos en tu carrito!',
+					   color: "#FFFFFF",
+		  				background: '#000000',
 					}):  
     	acumulador >= 3000 && Swal.fire({
 							  position: 'top-end',
