@@ -137,22 +137,31 @@ let arrayMenu = arrayEnsalada.concat(arrayCarne, arrayPasta, arrayPizzas, arrayT
 
 
 
+//buscador por precio maximo
+/*
+
+let buscarPrecio = document.getElementById("buscarPorPrecio"); 
+
+buscarPrecio.addEventListener("click", buscarPorPrecio)
 
 function buscarPorPrecio() {
-	let buscarPrecio = document.getElementById("buscarPorPrecio")
 
-	let precioBusqueda = arrayMenu.filter((Pizza)=>Pizza.precio <= buscarPrecio.value)
+
+	let	buscarPrecio = prompt("ingrese cifra maxima que desea gastar") 
+
+	let precioBusqueda = arrayMenu.filter((Pizza)=>Pizza.precio <= buscarPrecio)
 	
-	if (precioBusqueda == 0)  { 
-		console.log("No existen productos con ese precio") }
-		else { 
+		precioBusqueda == 0  ? 
+		alert("No existen productos con ese precio") 
+		: 
 		alert("Los productos encontrados con ese precio son:")
 		for (let precioEncontrado of precioBusqueda) {
 			precioEncontrado.hablar()
-		}
+		
 		
 	}
 }
+
 
 
 
@@ -186,7 +195,10 @@ function buscarPorId() {
 		idEncontrado.idFuction()
 }
 
+*/
 
+
+// Funcion limipiar previa a las cards de Menu
 
 function limpiar() {
 	let divPizzas = document.getElementById("pizzas")
@@ -208,7 +220,7 @@ function limpiar() {
 
 
 
-//mostrardores de menu
+//Mostrardores de menu por categoria
 
 let productosEnCarrito = []
 
@@ -522,6 +534,9 @@ function agregarAlCarritoCafe (cafe) {
 
 
 
+
+
+
 // Carrito y Botones del Carrito
 
 
@@ -538,18 +553,56 @@ botonCarrito.addEventListener("click", ()=>{
 
 
 
+
+
+//Creacion de envio de compra y captura de "Compra" con || (optimizacion) y confrmacion de envio final
+
+let compraEnEnvio 
+
+
 botonFinalizarCompra.addEventListener ("click", () => {
 	
 	let productosEnCarritoJSON = JSON.stringify(productosEnCarrito);
 	localStorage.setItem("Compra", productosEnCarritoJSON);
-	alert("Muchas gracias por tu compra, en breves instantes llegará a tu domicilio")
+	
+
+	compraEnEnvio = JSON.parse(localStorage.getItem("Compra")) || []
+
+		Swal.fire({
+		  title: 'Estas a punto de finalizar tu compra',
+		  text: "Revisa todos los productos que se encuentren en el carrito antes de confirmar",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  background: '#FFFFFF',
+  		  backdrop: `rgba(0,0,#93FCBD,0.4) left top no-repeat`,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Confirmar'
+			}).then((result) => {
+		  if (result.isConfirmed) {
+		    Swal.fire(
+		      'Confirmado',
+		      'Tu pedido está en envio',
+		      'success'
+		    )
+		  }
+		})
+
+	console.log (compraEnEnvio)
 })
 
 
 
 
 
-// Optimizacion con ternario
+
+
+
+
+
+
+
+// Optimizacion con ternario (IF)
 
 
 function cargarProductosCarrito(array){
@@ -559,7 +612,7 @@ function cargarProductosCarrito(array){
 
         modalBody.innerHTML += `
 
-	        <div class="card border-primary mb-3" id ="productoCarrito${productoCarrito.version}" style="max-width: 200px;">
+	        <div class="card border-primary mb-3 d-flex flex-wrap" id ="productoCarrito${productoCarrito.version}" style="max-width: 200px;">
 	            <img class="card-img-top" src="images/${productoCarrito.imagen}" alt="${productoCarrito.version}">
 	            <div class="card-body bg-black">
 	                    <h4 class="card-title">${productoCarrito.size}</h4>
@@ -572,7 +625,7 @@ function cargarProductosCarrito(array){
 	        </div>`
 
     })
-    //calcular el total
+    //calcular el total y aplicacion && para envio gratuito
     function compraTotal(array){
     let acumulador = 0
 
@@ -580,10 +633,20 @@ function cargarProductosCarrito(array){
         return acumulador + productoCarrito.precio
     },0)
    
-    acumulador == 0 ?
-        parrafoCompra.innerHTML = `<strong>No hay productos en el carrito</strong>`:
+    acumulador == 0 ? Swal.fire({
+					  icon: 'error',
+					  title: 'Upa...',
+					  text: 'Aún no hay productos en tu carrito!',
+					}):  
+    	acumulador >= 3000 && Swal.fire({
+							  position: 'top-end',
+							  icon: 'success',
+							  title: 'Felicidades ! con tu compra superior a $3000 obtienes el envio gratuito',
+							  showConfirmButton: false,
+							  timer: 2500
+							});
         parrafoCompra.innerHTML = `El total de su carrito es ${acumulador}`
-    
+    	
 }
 
 
@@ -592,7 +655,14 @@ function cargarProductosCarrito(array){
 }
 
 
-//Compra total con ternario
+
+
+
+
+
+
+
+//Compra total con ternario (IF)
 
 function compraTotal(array){
     let acumulador = 0
@@ -601,14 +671,15 @@ function compraTotal(array){
         return acumulador + productoCarrito.precio
     },0)
     acumulador == 0 ?
-        parrafoCompra.innerHTML = `<strong>No hay productos en el carrito</strong>`:    
-        parrafoCompra.innerHTML = `El total de su carrito es ${acumulador}`
+					  Swal.fire({
+					  icon: 'error',
+					  title: 'Upa...',
+					  text: 'Something went wrong!',
+					}):    
+      	
+        parrafoCompra.innerHTML = `El total de su carrito es: ${acumulador}`
     
 }
-
-
-
-
 
 
 
@@ -805,6 +876,10 @@ function buscarPorPlato() {
 
 
 
+
+
+
+
 //Creacion de clientes 
 
 
@@ -868,7 +943,7 @@ Toast.fire({
 })
 }
 
-//Almacenamiento el LocalStorage
+//Almacenamiento cliente en el LocalStorage
 
 let clienteNuevo = document.getElementById("clienteNuevo")
 
