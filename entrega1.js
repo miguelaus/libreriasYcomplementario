@@ -596,8 +596,7 @@ botonFinalizarCompra.addEventListener ("click", () => {
 
 
 
-
-
+//boton eliminar producto prueba
 
 
 
@@ -617,10 +616,10 @@ function cargarProductosCarrito(array){
 	        <div class="card border-primary mb-3 d-flex flex-wrap" id ="productoCarrito${productoCarrito.version}" style="max-width: 200px;">
 	            <img class="card-img-top" src="images/${productoCarrito.imagen}" alt="${productoCarrito.version}">
 	            <div class="card-body bg-black">
-	                    <h4 class="card-title">${productoCarrito.size}</h4>
-	                
+	                    <h4 class="card-title">${productoCarrito.version}</h4>
+	                    <p class="card-text"> ${productoCarrito.size}</p>
 	                    <p class="card-text">$${productoCarrito.precio}</p> 
-	                    <button class= "btn btn-danger" id="botonEliminar"><i class="fas fa-trash-alt"></i></button>
+	                    <button class= "btn btn-danger" id="${productoCarrito.id}r"><i class="fas fa-trash-alt"></i></button>
 	            </div>    
 	        
 	        
