@@ -1,4 +1,5 @@
 
+//Funciones constructoras
 
 function Pizza(version,precio,size,id,imagen) {
 	this.version = version;
@@ -560,7 +561,7 @@ botonCarrito.addEventListener("click", ()=>{
 
 
 
-//Creacion de envio de compra y captura de "Compra" con || (optimizacion) y confrmacion de envio final
+//Creacion de envio de compra y captura de "Compra" con || ,  confrmacion de envio final
 
 let compraEnEnvio 
 
@@ -582,14 +583,14 @@ botonFinalizarCompra.addEventListener ("click", () => {
 		  color: "#FFFFFF",
 		  background: '#000000',
   		  backdrop: `rgba(0,0,#93FCBD,0.4) left top no-repeat`,
-		  confirmButtonColor: '#3085d6',
+		  confirmButtonColor: '#08B620',
 		  cancelButtonColor: '#d33',
 		  confirmButtonText: 'Confirmar'
 			}).then((result) => {
 		  if (result.isConfirmed) {
 		    Swal.fire(
 		      'Confirmado',
-		      'Tu pedido está en envio',
+		      'Tu pedido está en camino, gracias por tu compra!',
 		      'success'
 		    )
 		  }
@@ -971,11 +972,24 @@ Toast.fire({
 let clienteNuevo = document.getElementById("clienteNuevo")
 
 clienteNuevo.addEventListener("click", ()=>{
+
+	if (nombreCliente.value != "" && apellidoCliente.value != "" && calleCliente.value != "" && telefonoCliente.value !="" && numeracionCliente.value !="") 
+	{ 
 	crearCliente(arrayClientes);
 	alertaClienteNuevo();
 
 	let arrayClientesJSON = JSON.stringify(arrayClientes);
-	localStorage.setItem("Clientes", arrayClientesJSON)
+	localStorage.setItem("Clientes", arrayClientesJSON) }else{
+		Swal.fire({
+				  position: 'center',
+				  olor: "white",
+				  background: "black",
+				  icon: 'error',
+				  title: 'Algunos de los campos para el registro, está incompleto. Verificalos porfavor',
+				  showConfirmButton: true,
+				  timer: 3500
+				  })
+	}
 })
 
 
