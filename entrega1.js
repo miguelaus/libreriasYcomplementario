@@ -297,7 +297,7 @@ function mostrarMenuPasta(array)  {
 		                  			<img class="card-img-top" src="images/${pasta.imagen}" alt="pasta">
 		                    			<div class="bg-black card-body py-5">
 		                      				<h5 class="card-title">${pasta.version}</h5>
-		                      					<p class="card-text">Precio: ${pasta.precio}</p>
+		                      					<p class="card-text">Precio: $${pasta.precio}</p>
 		                      					<p class="card-text">Tamaño de producto: ${pasta.size}</p>
 		                      				<button id="agregarBtn${pasta.id}" class="btn btn-primary">Agregar al Carrito</button>
 		                    			</div>
@@ -341,7 +341,7 @@ function mostrarMenuEnsalada () {
 		                  			<img class="card-img-top" src="images/${ensalada.imagen}" alt="pasta">
 		                    			<div class="bg-black card-body">
 		                      				<h5 class="card-title">${ensalada.version}</h5>
-		                      					<p class="card-text">Precio: ${ensalada.precio}</p>
+		                      					<p class="card-text">Precio: $${ensalada.precio}</p>
 		                      					<p class="card-text">Tamaño de producto: ${ensalada.size}</p>
 		                      				<button id="agregarBtn${ensalada.id}" class="btn btn-primary">Agregar al Carrito</button>
 		                    			</div>
@@ -384,7 +384,7 @@ function mostrarMenuCarne () {
 		                  			<img class="card-img-top" src="images/${carne.imagen}" alt="carne">
 		                    			<div class="bg-black card-body">
 		                      				<h5 class="card-title">${carne.version}</h5>
-		                      					<p class="card-text">Precio: ${carne.precio}</p>
+		                      					<p class="card-text">Precio: $${carne.precio}</p>
 		                      					<p class="card-text">Tamaño de producto: ${carne.size}</p>
 		                      				<button id="agregarBtn${carne.id}" class="btn btn-primary">Agregar al Carrito</button>
 		                    			</div>
@@ -423,7 +423,7 @@ function mostrarMenuTragos() {
 		                  			<img class="card-img-top" src="images/${tragos.imagen}" alt="carne">
 		                    			<div class="bg-black card-body">
 		                      				<h5 class="card-title">${tragos.version}</h5>
-		                      					<p class="card-text">Precio: ${tragos.precio}</p>
+		                      					<p class="card-text">Precio: $${tragos.precio}</p>
 		                      					<p class="card-text">Tamaño de producto: ${tragos.size}</p>
 		                      				<button id="agregarBtn${tragos.id}" class="btn btn-primary">Agregar al Carrito</button>
 		                    			</div>
@@ -466,7 +466,7 @@ function mostrarMenuPostres() {
 			                  			<img class="card-img-top" src="images/${postre.imagen}" alt="postre">
 			                    			<div class="bg-black card-body">
 			                      				<h5 class="card-title">${postre.version}</h5>
-			                      					<p class="card-text">Precio: ${postre.precio}</p>
+			                      					<p class="card-text">Precio: $${postre.precio}</p>
 			                      					<p class="card-text">Tamaño de producto: ${postre.size}</p>
 		                      					<button id="agregarBtn${postre.id}" class="btn btn-primary">Agregar al Carrito</button>
 			                    			</div>
@@ -504,7 +504,7 @@ function mostrarMenuCafe() {
 			                  			<img class="card-img-top" src="images/${cafe.imagen}" alt="postre">
 			                    			<div class="bg-black card-body">
 			                      				<h5 class="card-title">${cafe.version}</h5>
-			                      					<p class="card-text">Precio: ${cafe.precio}</p>
+			                      					<p class="card-text">Precio: $${cafe.precio}</p>
 			                      					<p class="card-text">Tamaño de producto: ${cafe.size}</p>
 		                      					<button id="agregarBtn${cafe.id}" class="btn btn-primary">Agregar al Carrito</button>
 			                    			</div>
@@ -566,7 +566,13 @@ botonCarrito.addEventListener("click", ()=>{
 let compraEnEnvio 
 
 
-botonFinalizarCompra.addEventListener ("click", () => {
+botonFinalizarCompra.addEventListener ("click", () => { if ( productosEnCarrito == "") { Swal.fire({
+					  icon: 'error',
+					  title: 'Upa...',
+					  text: 'Aún no hay productos en tu carrito!',
+					   color: "#FFFFFF",
+		  				background: '#000000',
+					})} else { 
 	
 	let productosEnCarritoJSON = JSON.stringify(productosEnCarrito);
 	localStorage.setItem("Compra", productosEnCarritoJSON);
@@ -597,7 +603,7 @@ botonFinalizarCompra.addEventListener ("click", () => {
 		})
 
 	console.log (compraEnEnvio)
-})
+}})
 
 
 
